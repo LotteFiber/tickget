@@ -1,7 +1,15 @@
-export default function Home() {
+import Link from "next/link";
+import { ticketsPath } from "@/paths";
+
+const HomePage = () => {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
-      <h1>HOME PAGE</h1>
+    <div>
+      <h2 className="text-lg">Home Page</h2>
+      <Link href={ticketsPath()} className="underline">
+        Go to Tickets
+      </Link>
     </div>
   );
-}
+};
+
+export default HomePage;

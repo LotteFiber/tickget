@@ -11,6 +11,26 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.config({
+    extends: ["next/core-web-vitals"],
+    plugins: ["simple-import-sort"],
+    rules: {
+      "simple-import-sort/imports": [
+        "error",
+        {
+          groups: [["^\\u0000", "^@?\\w", "^[^.]", "^\\."]],
+        },
+      ],
+      "simple-import-sort/exports": "error",
+    },
+    parserOptions: {
+      sourceType: "module",
+      ecmaVersion: "latest",
+    },
+  }),
+  {
+    ignores: [".next/", "node_modules/"],
+  },
 ];
 
 export default eslintConfig;

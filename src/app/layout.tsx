@@ -1,7 +1,9 @@
 import "./globals.css";
+import { Ticket } from "lucide-react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 import { homePath, ticketsPath } from "@/paths";
 
 const geistSans = Geist({
@@ -36,12 +38,19 @@ export default function RootLayout({
 		w-ful flex py-2.5 px-5 justify-between"
         >
           <div>
-            <Link href={homePath()} className="text-lg font-bold">
-              Home
+            <Link
+              href={homePath()}
+              className={buttonVariants({ variant: "ghost" })}
+            >
+              <Ticket />
+              <h1 className="ml-1 text-lg font-semibold">Tickget</h1>
             </Link>
           </div>
           <div>
-            <Link href={ticketsPath()} className="text-sm underline">
+            <Link
+              href={ticketsPath()}
+              className={buttonVariants({ variant: "outline" })}
+            >
               Tickets
             </Link>
           </div>

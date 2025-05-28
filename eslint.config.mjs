@@ -29,7 +29,7 @@ const eslintConfig = [
     },
   }),
   {
-    ignores: [".next/", "node_modules/"],
+    ignores: [".next/", "node_modules/", "src/generated/"],
   },
 ];
 

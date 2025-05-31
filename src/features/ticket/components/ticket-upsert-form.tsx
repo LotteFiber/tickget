@@ -27,11 +27,19 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
           id="title"
           name="title"
           type="text"
-          defaultValue={ticket?.title}
+          defaultValue={
+            (actionState.payload?.get("title") as string) ?? ticket?.title
+          }
         />
 
         <Label htmlFor="content">Content</Label>
-        <Textarea id="content" name="content" defaultValue={ticket?.content} />
+        <Textarea
+          id="content"
+          name="content"
+          defaultValue={
+            (actionState.payload?.get("content") as string) ?? ticket?.content
+          }
+        />
         <SubmitButton label={ticket ? "Edit" : "Create"} />
         {actionState.message}
       </form>

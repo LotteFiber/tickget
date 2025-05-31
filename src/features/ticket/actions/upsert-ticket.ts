@@ -12,7 +12,7 @@ const upsertTicketSchema = z.object({
 
 export const upsertTicket = async (
   id: string | undefined,
-  _actionState: { message: string },
+  _actionState: { message: string; payload?: FormData },
   formData: FormData
 ) => {
   try {
@@ -30,7 +30,7 @@ export const upsertTicket = async (
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    return { message: "Something went wrong" };
+    return { message: "Something went wrong", payload: formData };
   }
 
   revalidatePath(ticketsPath());

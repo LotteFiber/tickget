@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { setCookieByKey } from "@/actions/cookies";
 import {
   ActionState,
   fromErrorToActionState,
@@ -17,7 +18,7 @@ const upsertTicketSchema = z.object({
 
 export const upsertTicket = async (
   id: string | undefined,
-  _actionState: ActionState,
+  _formState: ActionState,
   formData: FormData
 ) => {
   try {
@@ -40,6 +41,7 @@ export const upsertTicket = async (
   revalidatePath(ticketsPath());
 
   if (id) {
+    await setCookieByKey("toast", "Ticket updated");
     redirect(ticketPath(id));
   }
 

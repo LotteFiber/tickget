@@ -4,13 +4,12 @@ import { TicketUpsertForm } from "@/features/ticket/components/ticket-upsert-for
 import { getTicket } from "@/features/ticket/queries/get-ticket";
 
 type TicketEditPageProps = {
-  params: {
-    ticketId: string;
-  };
+  params: Promise<{ ticketId: string }>;
 };
 
 const TicketEditPage = async ({ params }: TicketEditPageProps) => {
-  const ticket = await getTicket(params.ticketId);
+  const ticketId = (await params).ticketId;
+  const ticket = await getTicket(ticketId);
 
   if (!ticket) {
     notFound();

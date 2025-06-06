@@ -1,4 +1,6 @@
 "use client";
+
+import { Ticket } from "@prisma/client";
 import clsx from "clsx";
 import {
   LucidePencil,
@@ -7,8 +9,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Ticket } from "@/generated/prisma";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ticketEditPath, ticketPath } from "@/paths";
 import { deleteTicket } from "../actions/delete-ticket";
 import { TICKET_ICONS } from "../constants";
@@ -45,6 +52,8 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     </Button>
   );
 
+  console.log(ticket);
+
   return (
     <div
       className={clsx("w-full flex flex-col gap-y-4", {
@@ -69,6 +78,10 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
               {ticket.content}
             </span>
           </CardContent>
+          <CardFooter className="flex justify-between">
+            <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+            <p className="text-sm text-muted-foreground">{ticket.bounty}</p>
+          </CardFooter>
         </Card>
         <div className="flex flex-col gap-y-1">
           {isDetail ? (

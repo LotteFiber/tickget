@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ticketEditPath, ticketPath } from "@/paths";
+import { toCurrencyFromSatang } from "@/utils/currency";
 import { deleteTicket } from "../actions/delete-ticket";
 import { TICKET_ICONS } from "../constants";
 
@@ -64,7 +65,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
       <div className="flex gap-x-2">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="flex gap-x-2">
+            <CardTitle className="flex gap-x-2 h-8">
               <span>{TICKET_ICONS[ticket.status]}</span>
               <span className="truncate">{ticket.title}</span>
             </CardTitle>
@@ -80,7 +81,9 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
           </CardContent>
           <CardFooter className="flex justify-between">
             <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
-            <p className="text-sm text-muted-foreground">{ticket.bounty}</p>
+            <p className="text-sm text-muted-foreground">
+              {toCurrencyFromSatang(ticket.bounty)}
+            </p>
           </CardFooter>
         </Card>
         <div className="flex flex-col gap-y-1">

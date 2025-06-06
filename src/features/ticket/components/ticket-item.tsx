@@ -84,6 +84,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
             <p className="text-sm text-muted-foreground">
               {toCurrencyFromSatang(ticket.bounty)}
             </p>
+
           </CardFooter>
         </Card>
         <div className="flex flex-col gap-y-1">

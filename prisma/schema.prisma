@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -16,6 +15,8 @@ model Ticket {
   title     String
   content   String       @db.VarChar(1024)
   status    TicketStatus @default(OPEN)
+  deadline  String
+  bounty    Int
 }
 
 enum TicketStatus {

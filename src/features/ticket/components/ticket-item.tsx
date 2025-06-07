@@ -1,6 +1,5 @@
 "use client";
 
-import { Ticket } from "@prisma/client";
 import clsx from "clsx";
 import {
   LucidePencil,
@@ -16,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Ticket } from "@/generated/prisma";
 import { ticketEditPath, ticketPath } from "@/paths";
 import { toCurrencyFromSatang } from "@/utils/currency";
 import { deleteTicket } from "../actions/delete-ticket";
@@ -84,7 +84,6 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
             <p className="text-sm text-muted-foreground">
               {toCurrencyFromSatang(ticket.bounty)}
             </p>
-
           </CardFooter>
         </Card>
         <div className="flex flex-col gap-y-1">

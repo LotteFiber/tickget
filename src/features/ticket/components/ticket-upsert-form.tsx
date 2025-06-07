@@ -1,6 +1,5 @@
 "use client";
 
-import { Ticket } from "@prisma/client";
 import { useActionState } from "react";
 import { DatePicker } from "@/components/date-picker";
 import { FieldError } from "@/components/form/field-error";
@@ -10,6 +9,7 @@ import { EMPTY_ACTION_STATE } from "@/components/form/utils/to-action-state";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Ticket } from "@/generated/prisma";
 import { fromSatang } from "@/utils/currency";
 import { upsertTicket } from "../actions/upsert-ticket";
 
@@ -51,6 +51,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
           <div className="w-1/2">
             <Label htmlFor="deadline">Deadline</Label>
             <DatePicker
+              key={actionState.timestamp}
               id="deadline"
               name="deadline"
               defaultValue={

@@ -53,8 +53,6 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     </Button>
   );
 
-  console.log(ticket);
-
   return (
     <div
       className={clsx("w-full flex flex-col gap-y-4", {

@@ -49,5 +49,10 @@ export const toActionState = (
   status: ActionState["status"],
   message: string
 ): ActionState => {
-  return { status, message, fieldError: {}, timestamp: Date.now() };
+  return {
+    status,
+    message,
+    fieldError: {},
+    timestamp: Date.now(),
+  };
 };

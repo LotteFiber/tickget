@@ -1,7 +1,9 @@
 "use client";
 
-import { cloneElement, useState } from "react";
-import { ActionState } from "./form/utils/to-action-state";
+import { cloneElement, useActionState, useState } from "react";
+import { Form } from "./form/form";
+import { SubmitButton } from "./form/submit-button";
+import { ActionState, EMPTY_ACTION_STATE } from "./form/utils/to-action-state";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +14,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "./ui/alert-dialog";
-import { Button } from "./ui/button";
 
 type UseConfirmDialogProps = {
   title?: string;
@@ -34,6 +35,12 @@ const useConfirmDialog = ({
     onClick: () => setIsOpen((state) => !state),
   });
 
+  const [actionState, formAction] = useActionState(action, EMPTY_ACTION_STATE);
+
+  const handleSuccess = () => {
+    setIsOpen(false);
+  };
+
   const dialog = (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogContent>
@@ -44,9 +51,13 @@ const useConfirmDialog = ({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Button type="button" onClick={() => action()}>
-              Confirm
-            </Button>
+            <Form
+              action={formAction}
+              actionState={actionState}
+              onSuccess={handleSuccess}
+            >
+              <SubmitButton label="Confirm" />
+            </Form>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

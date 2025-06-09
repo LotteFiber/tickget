@@ -1,3 +1,6 @@
+"use client";
+
+import { cloneElement, useState } from "react";
 import { ActionState } from "./form/utils/to-action-state";
 import {
   AlertDialog,
@@ -8,26 +11,31 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 
-type ConfirmDialogProps = {
+type UseConfirmDialogProps = {
   title?: string;
   description?: string;
   action: () => Promise<ActionState>;
-  trigger: React.ReactElement;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  trigger: React.ReactElement<any>;
 };
 
-const ConfirmDialog = ({
+const useConfirmDialog = ({
   title = "Are you absolutely sure?",
   description = "This action cannot be undone. Make sure you understand the consequences.",
   action,
   trigger,
-}: ConfirmDialogProps) => {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+}: UseConfirmDialogProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const dialogTrigger = cloneElement(trigger, {
+    onClick: () => setIsOpen((state) => !state),
+  });
+
+  const dialog = (
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
@@ -44,6 +52,7 @@ const ConfirmDialog = ({
       </AlertDialogContent>
     </AlertDialog>
   );
+  return [dialogTrigger, dialog] as const;
 };
 
-export { ConfirmDialog };
+export { useConfirmDialog };

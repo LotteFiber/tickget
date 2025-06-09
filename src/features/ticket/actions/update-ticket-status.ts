@@ -1,11 +1,11 @@
 "use server";
 
-import { TicketStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import {
   fromErrorToActionState,
   toActionState,
 } from "@/components/form/utils/to-action-state";
+import { TicketStatus } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { ticketsPath } from "@/paths";
 

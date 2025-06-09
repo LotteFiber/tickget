@@ -42,7 +42,7 @@ const DatePicker = ({
     setOpen(false);
   };
 
-  const formattedStringDate = date ? format(date, "dd-MM-yyyy") : "";
+  const formattedStringDate = date ? format(date, "yyyy-MM-dd") : "";
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

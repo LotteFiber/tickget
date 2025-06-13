@@ -74,7 +74,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
           </div>
 
           <div className="w-1/2">
-            <Label htmlFor="bounty">Bounty (฿)</Label>
+            <Label htmlFor="bounty">Price (฿)</Label>
 
             <Input
               id="bounty"
